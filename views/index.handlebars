@@ -21,6 +21,7 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-10 col-12 mx-auto">
+            <a href="./restaurants/new">Create</a>
             <div class="card-columns">
                 {{#each restaurants}}
                 <a href="/restaurants/{{this._id}}" class="text-secondary">
@@ -40,7 +41,7 @@
                             <div>
                                 <a href="/restaurants/{{this._id}}/edit">edit</a>
                                 <a href="/restaurants/{{this._id}}">detail</a>
-                                <form action="/restaurants/{{this._id}}/delete"method="POST" style="display: inline;">
+                                <form action="/restaurants/{{this._id}}/delete" method="POST" style="display: inline;">
                                     <button type="submit">delete</button>
                                 </form>
                             </div>
