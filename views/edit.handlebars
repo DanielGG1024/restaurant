@@ -1,37 +1,49 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-10 mx-auto text-center">
-            <form action="/restaurants/{{restaurant._id}}/edit" method="POST">資料編輯
-                <label for="name">名稱</label>
-                <input type="text" name="name" id="name" value="{{restaurant.name}}">
-                <br />
-                <label for="name_en">英文名稱</label>
-                <input type="text" name="name_en" id="name_en" value="{{restaurant.name_en}}">
-                <br />
-                <label for="category">餐廳類型</label>
-                <input type="text" name="category" id="category" value="{{restaurant.category}}">
-                <br />
-                <label for="image">圖片網址</label>
-                <input type="text" name="image" id="image" value="{{restaurant.image}}">
-                <br>
-                <label for="location">地址</label>
-                <input type="text" name="location" id="location" value="{{restaurant.location}}">
-                <br>
-                <label for="phone">電話</label>
-                <input type="text" name="phone" id="phone" value="{{restaurant.phone}}">
-                <br>
-                <label for="google_map">google_map</label>
-                <input type="text" name="google_map" id="google_map" value="{{restaurant.google_map}}">
-                <br>
-                <label for="rating">評分</label>
-                <input type="text" name="rating" id="rating" value="{{restaurant.rating}}">
-                <br>
-                <label for="description">描述</label>
-                <textarea name="description" id="description" cols="30" rows="5" value="{{restaurant.description}}">{{restaurant.description}}</textarea>
-                <br>
-                <button type="submit">修改</button>
-                <a href="/">back</a>
+            <h1 class="text-center my-4">資料編輯</h1>
+            <form action="/restaurants/{{restaurant._id}}/edit" method="POST">
+                <div class="form-group d-flex">
+                    <label class="col-3" for="name">名稱</label>
+                    <input class="col-8" type="text" name="name" id="name" value="{{restaurant.name}}" placeholder="請輸入姓名..." required>
+                </div>
+                <div class="form-group d-flex">
+                    <label class="col-3" for="name_en">英文名稱</label>
+                    <input class="col-8" type="text" name="name_en" id="name_en" value="{{restaurant.name_en}}" placeholder="請輸入英文姓名...">
+                </div>
+                <div class="form-group d-flex">
+                    <label class="col-3" for="category">餐廳類型</label>
+                    <input class="col-8" type="text" name="category" id="category" value="{{restaurant.category}}" placeholder="請輸入餐廳名稱..." required>
+                </div>
+                <div class="form-group d-flex">
+                    <label class="col-3" for="image">圖片網址</label>
+                    <input class="col-8" type="text" name="image" id="image" value="{{restaurant.image}}" placeholder="請輸入圖片網址..." required>
+                </div>
+                <div class="form-group d-flex">
+                    <label class="col-3" for="location">地址</label>
+                    <input class="col-8" type="text" name="location" id="location" value="{{restaurant.location}}" placeholder="請輸入地址..." required>
+                </div>
+                <div class="form-group d-flex">
+                    <label class="col-3" for="phone">電話</label>
+                    <input class="col-8" type="text" name="phone" id="phone" value="{{restaurant.phone}}" placeholder="請輸入電話..." required>
+                </div>
+                <div class="form-group d-flex">
+                    <label class="col-3" for="google_map">google_map</label>
+                    <input class="col-8" type="text" name="google_map" id="google_map" value="{{restaurant.google_map}}" placeholder="google_map">
+                </div>
+                <div class="form-group d-flex">
+                    <label class="col-3" for="rating">評分</label>
+                    <input class="col-8" type="text" name="rating" id="rating" value="{{restaurant.rating}}" placeholder="評分" required>
+                </div>
+                <div class="form-group d-flex">
+                    <label class="col-3" for="description">描述</label>
+                    <textarea class="col-8" name="description" id="description" placeholder="描述" required>{{restaurant.description}}</textarea>
+                </div>
+                <div class="form-group d-flex justify-content-center">
+                    <button type="submit" class="btn btn-info">修改</button>
+                </div>
             </form>
         </div>
+        <a href="/">back</a>
     </div>
 </div>

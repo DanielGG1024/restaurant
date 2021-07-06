@@ -6,11 +6,13 @@ const app = express()
 
 mongoose.connect('mongodb://localhost/restaurants', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
-
+// console.log(Restaurant)
 const restaurants = require('./restaurant.json')
 const allrestaurant = restaurants.results
+
 const port = 3000
 
+// 資料庫連線
 db.on('error', () => {
     console.log('mongodb error!')
 })
@@ -21,9 +23,9 @@ db.once('open', () => {
 
 const exphbs = require('express-handlebars')
 const restaurant = require('./models/restaurant')
+const { find } = require('./models/restaurant')
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
-
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -34,10 +36,13 @@ app.get('/', (req, res) => {
         .then(restaurants => res.render('index', { restaurants }))
         .catch(error => console.error(error))
 })
+
 // 導向新增頁面
 app.get('/restaurants/new', (req, res) => {
     return res.render('new')
 })
+
+// 新增
 app.post('/restaurants', (req, res) => {
     const name = req.body.name
     const name_en = req.body.name_en
@@ -62,6 +67,7 @@ app.post('/restaurants', (req, res) => {
         .then(() => res.redirect('/'))
         .catch(error => console.log(error))
 })
+
 //瀏覽單一餐廳detail
 app.get('/restaurants/:id', (req, res) => {
     const paramsId = req.params.id
@@ -79,6 +85,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
         .then((restaurant) => res.render('edit', { restaurant }))
         .catch(error => console.log(error))
 })
+
 // 修改資料
 app.post('/restaurants/:id/edit', (req, res) => {
     const id = req.params.id
@@ -118,13 +125,21 @@ app.post('/restaurants/:id/delete', (req, res) => {
 
 // 搜尋
 app.get('/search', (req, res) => {
-    const searchWord = req.query.keyword.toLowerCase().trim()
-    const searchRestaurant = allrestaurant.filter(restaurant =>
-        restaurant.name.toLocaleLowerCase().trim().includes(searchWord) ||
-        restaurant.category.trim().includes(searchWord))
-    res.render('index', { restaurants: searchRestaurant })
+    const searchWord = req.query.keyword.trim().toLowerCase()
+    Restaurant.find()
+        .lean()
+        .then((restaurants) => {
+            if (searchWord) {
+                restaurants = restaurants.filter((restaurant) =>
+                    restaurant.name.toLowerCase().includes(searchWord) ||
+                    restaurant.category.includes(searchWord))
+            }
+            res.render('index', { restaurants, searchWord })
+        })
+        .catch((error) => console.error(error))
 })
 
+// 監聽
 app.listen(port, () => {
     console.log(`The Express server is running on http://localhost:${port}`)
 })
