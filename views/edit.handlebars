@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-10 mx-auto text-center">
+            <form action="/restaurants/{{restaurant._id}}/edit" method="POST">資料編輯
+                <label for="name">名稱</label>
+                <input type="text" name="name" id="name" value="{{restaurant.name}}">
+                <br />
+                <label for="name_en">英文名稱</label>
+                <input type="text" name="name_en" id="name_en" value="{{restaurant.name_en}}">
+                <br />
+                <label for="category">餐廳類型</label>
+                <input type="text" name="category" id="category" value="{{restaurant.category}}">
+                <br />
+                <label for="image">圖片網址</label>
+                <input type="text" name="image" id="image" value="{{restaurant.image}}">
+                <br>
+                <label for="location">地址</label>
+                <input type="text" name="location" id="location" value="{{restaurant.location}}">
+                <br>
+                <label for="phone">電話</label>
+                <input type="text" name="phone" id="phone" value="{{restaurant.phone}}">
+                <br>
+                <label for="google_map">google_map</label>
+                <input type="text" name="google_map" id="google_map" value="{{restaurant.google_map}}">
+                <br>
+                <label for="rating">評分</label>
+                <input type="text" name="rating" id="rating" value="{{restaurant.rating}}">
+                <br>
+                <label for="description">描述</label>
+                <textarea name="description" id="description" cols="30" rows="5" value="{{restaurant.description}}">{{restaurant.description}}</textarea>
+                <br>
+                <button type="submit">修改</button>
+                <a href="/">back</a>
+            </form>
+        </div>
+    </div>
+</div>
