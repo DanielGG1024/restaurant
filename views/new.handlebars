@@ -1,46 +1,54 @@
-    
-        
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-10 mx-auto">
             <h1 class="text-center my-4">新增餐廳</h1>
             <form action="/restaurants" method="POST">
                 <div class="form-group d-flex">
-                    <label class="col-3" for="name">名稱</label>
-                    <input class="col-8" type="text" name="name" id="name" value="" placeholder="請輸入姓名..." required>
+                    <label class="col-3" for="name">名稱*</label>
+                    <input class="col-8" type="text" name="name" id="name" value="" placeholder="王品..." required>
                 </div>
                 <div class="form-group d-flex">
                     <label class="col-3" for="name_en">英文名稱</label>
-                    <input class="col-8" type="text" name="name_en" id="name_en" value="" placeholder="請輸入英文姓名...">
+                    <input class="col-8" type="text" name="name_en" id="name_en" value="" placeholder="Wang Steak...">
                 </div>
                 <div class="form-group d-flex">
-                    <label class="col-3" for="category">餐廳類型</label>
-                    <input class="col-8" type="text" name="category" id="category" value="" placeholder="請輸入餐廳名稱..." required>
+                    <label class="col-3" for="category">餐廳類型*</label>
+                    <input class="col-8" type="text" name="category" id="category" value="" placeholder="牛排館..."
+                        required>
                 </div>
                 <div class="form-group d-flex">
-                    <label class="col-3" for="image">圖片網址</label>
-                    <input class="col-8" type="text" name="image" id="image" value="" placeholder="請輸入圖片網址..." required>
+                    <label class="col-3" for="image">圖片網址*</label>
+                    <input class="col-8" type="text" name="image" id="image" value=""
+                        placeholder="https://www.google.com/search?q=%E7%8E%8B%E5%93%81..."
+                        required>
                 </div>
                 <div class="form-group d-flex">
-                    <label class="col-3" for="location">地址</label>
-                    <input class="col-8" type="text" name="location" id="location" value="" placeholder="請輸入地址..." required>
+                    <label class="col-3" for="location">地址*</label>
+                    <input class="col-8" type="text" name="location" id="location" value=""
+                        placeholder="台北市中正區羅斯福路二段9號..." required>
                 </div>
                 <div class="form-group d-flex">
-                    <label class="col-3" for="phone">電話</label>
-                    <input class="col-8" type="text" name="phone" id="phone" value="" placeholder="請輸入電話..." required>
+                    <label class="col-3" for="phone">電話*</label>
+                    <input class="col-8" type="text" name="phone" id="phone" value="" placeholder="02-2393-4689..."
+                        required>
                 </div>
                 <div class="form-group d-flex">
                     <label class="col-3" for="google_map">google_map</label>
-                    <input class="col-8" type="text" name="google_map" id="google_map" value="" placeholder="google_map">
+                    <input class="col-8" type="text" name="google_map" id="google_map" value=""
+                        placeholder="google_map">
                 </div>
                 <div class="form-group d-flex">
-                    <label class="col-3" for="rating">評分</label>
-                    <input class="col-8" type="text" name="rating" id="rating" value="" placeholder="評分" required >
+                    <label class="col-3" for="rating">評分*</label>
+                    <input class="col-8" type="number" min="0.1" max="5" name="rating" id="rating" value=""
+                        placeholder="4.1" required>
                 </div>
                 <div class="form-group d-flex">
-                    <label class="col-3" for="description">描述</label>
-                    <textarea class="col-8" name="description" id="description" value="" placeholder="描述" required></textarea>
+                    <label class="col-3" for="description">描述*</label>
+                    <textarea class="col-8" name="description" id="description" value=""
+                        placeholder="捷運松山新店線古亭站6號出口，直行羅斯福路約5分鐘可達，臨近鬧區西門町搭乘計程車與捷運皆十分便利..."
+                        required></textarea>
                 </div>
+                <p>(*為必填)</p>
                 <div class="form-group d-flex justify-content-center">
                     <button type="submit" class="btn btn-info">新增</button>
                 </div>

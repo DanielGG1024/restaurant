@@ -22,8 +22,6 @@ db.once('open', () => {
 })
 
 const exphbs = require('express-handlebars')
-const restaurant = require('./models/restaurant')
-const { find } = require('./models/restaurant')
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
