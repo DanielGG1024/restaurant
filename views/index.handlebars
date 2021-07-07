@@ -19,7 +19,7 @@
 
 <!-- restaurant list -->
 <div class="container mt-5">
-    <a href="/restaurants/new">Create</a>
+    <a href="/restaurants/new" class="btn btn-info">Create</a>
     <div class="row">
         {{#each restaurants}}
         <div class="col-md-4 col-12 mx-auto">
@@ -34,15 +34,15 @@
                                 <i class="fas fa-utensils pr-2"></i>{{this.category}}
                             </div>
 
-                            <span class="badge badge-pill badge-danger font-weight-normal">
+                            <span class="badge badge-pill badge-danger font-weight-normal mb-3">
                                 {{this.rating}}
                                 <i class="fas fa-star fa-xs"></i>
                             </span>
                             <div>
-                                <a href="/restaurants/{{this._id}}/edit">edit</a>
-                                <a href="/restaurants/{{this._id}}">detail</a>
+                                <a href="/restaurants/{{this._id}}/edit" class="btn btn-info">edit</a>
+                                <a href="/restaurants/{{this._id}}" class="btn btn-info">detail</a>
                                 <form action="/restaurants/{{this._id}}/delete" method="POST" style="display: inline;">
-                                    <button type="submit">delete</button>
+                                    <button type="submit" class="btn btn-danger">delete</button>
                                 </form>
                             </div>
                         </div>
