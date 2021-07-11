@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12 col-md-10 mx-auto text-center">
             <h1 class="text-center my-4">資料編輯</h1>
-            <form action="/restaurants/{{restaurant._id}}/edit" method="POST">
+            <form action="/restaurants/{{restaurant._id}}?_method=PUT" method="POST">
                 <div class="form-group d-flex">
                     <label class="col-3" for="name">名稱</label>
                     <input class="col-8" type="text" name="name" id="name" value="{{restaurant.name}}"

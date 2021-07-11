@@ -23,6 +23,8 @@ db.once('open', () => {
             google_map: item.google_map,
             rating: item.rating,
             description: item.description
+        }).then(() => {
+            db.close()
         })
     })
     console.log('done')

@@ -1,31 +1,33 @@
 const express = require('express')
+// 載入mongoose
 const mongoose = require('mongoose')
 const Restaurant = require('./models/restaurant')
 const bodyParser = require('body-parser')
+const exphbs = require('express-handlebars')
+const methodOverride = require('method-override')
 const app = express()
-
-mongoose.connect('mongodb://localhost/restaurants', { useNewUrlParser: true, useUnifiedTopology: true })
-const db = mongoose.connection
-// console.log(Restaurant)
-const restaurants = require('./restaurant.json')
-const allrestaurant = restaurants.results
-
 const port = 3000
+// 使用mongoose的connect方法 與Mongodb建立連線
+mongoose.connect('mongodb://localhost/restaurants', { useNewUrlParser: true, useUnifiedTopology: true })
+// 取的資料庫連線狀態
+const db = mongoose.connection
 
-// 資料庫連線
+// 監聽error有沒有發生
 db.on('error', () => {
     console.log('mongodb error!')
 })
-
+// 監聽open有沒有發生
 db.once('open', () => {
     console.log('mongodb connected!')
 })
 
-const exphbs = require('express-handlebars')
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+
 app.use(express.static('public'))
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
+
 
 // 主頁面
 app.get('/', (req, res) => {
@@ -85,7 +87,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
 })
 
 // 修改資料
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
     const id = req.params.id
     const name = req.body.name
     const name_en = req.body.name_en
@@ -113,10 +115,10 @@ app.post('/restaurants/:id/edit', (req, res) => {
         .catch(error => console.log(error))
 })
 // 刪除
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
     const id = req.params.id
     return Restaurant.findById(id)
-        .then(Restaurant => Restaurant.remove())
+        .then(restaurant => restaurant.remove())
         .then(() => res.redirect('/'))
         .catch(error => console.log(error))
 })
