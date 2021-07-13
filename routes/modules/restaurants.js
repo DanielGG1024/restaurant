@@ -10,25 +10,13 @@ router.get('/new', (req, res) => {
 
 // 新增
 router.post('/', (req, res) => {
-    const name = req.body.name
-    const name_en = req.body.name_en
-    const category = req.body.category
-    const image = req.body.image
-    const location = req.body.location
-    const phone = req.body.phone
-    const google_map = req.body.google_map
-    const rating = req.body.rating
-    const description = req.body.description
+    const { name, name_en, category,
+        image, location, phone,
+        google_map, rating, description } = req.body
     return Restaurant.create({
-        name,
-        name_en,
-        category,
-        image,
-        location,
-        phone,
-        google_map,
-        rating,
-        description
+        name, name_en, category,
+        image, location, phone,
+        google_map, rating, description
     })
         .then(() => res.redirect('/'))
         .catch(error => console.log(error))
@@ -36,8 +24,8 @@ router.post('/', (req, res) => {
 
 //瀏覽單一餐廳detail
 router.get('/:id', (req, res) => {
-    const paramsId = req.params.id
-    Restaurant.findById(paramsId)
+    const id = req.params.id
+    Restaurant.findById(id)
         .lean()
         .then(restaurant => res.render('detail', { restaurant }))
         .catch(error => console.log(error))
@@ -45,25 +33,19 @@ router.get('/:id', (req, res) => {
 
 // 導向編輯頁面
 router.get('/:id/edit', (req, res) => {
-    const paramsId = req.params.id
-    Restaurant.findById(paramsId)
+    const id = req.params.id
+    Restaurant.findById(id)
         .lean()
-        .then((restaurant) => res.render('edit', { restaurant }))
+        .then(restaurant => res.render('edit', { restaurant }))
         .catch(error => console.log(error))
 })
 
 // 修改資料
 router.put('/:id', (req, res) => {
     const id = req.params.id
-    const name = req.body.name
-    const name_en = req.body.name_en
-    const category = req.body.category
-    const image = req.body.image
-    const location = req.body.location
-    const phone = req.body.phone
-    const google_map = req.body.google_map
-    const rating = req.body.rating
-    const description = req.body.description
+    const { name, name_en, category,
+        image, location, phone,
+        google_map, rating, description } = req.body
     return Restaurant.findById(id)
         .then(restaurant => {
             restaurant.name = name
